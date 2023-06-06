@@ -3,7 +3,7 @@
 {% block title %}{{ item.name }}{% endblock %}
 
 {% block content %}
-    <div class="grid grid-cols-5 gap-6">
+    <div class="md:grid md:grid-cols-5 md:gap-6">
         <div class="col-span-3">
             <img src="{{ item.image.url }}" class="rounded-xl">
         </div>
@@ -41,12 +41,12 @@
                 <div>
                     <a href="{% url 'item:detail' item.id %}">
                         <div>
-                            <img src="{{ item.image.url }}" class="rounded-t-xl w-80 h-80">
+                            <img src="{{ item.image.url }}" class="rounded-t-xl md:w-80 md:h-80">
                         </div>
 
-                        <div class="p-6 bg-white rounded-b-xl w-80 h-30">
-                            <h2 class="text-2xl">{{ item.name }}</h2>
-                            <p class="text-gray-500">Price: {{ item.price }}</p>
+                        <div class="w-30 h-20 md:p-3 bg-white rounded-b-xl md:w-80 md:h-30">
+                            <h2 class="text-sm md:text-2xl">{{ item.name }}</h2>
+                            <p class="text-xs md:text-2xl text-gray-500">Price: {{ item.price }}</p>
                         </div>
                     </a>
                 </div>
