@@ -3,7 +3,7 @@
 {% block title %}Items{% endblock %}
 
 {% block content %}
-    <div class="pb-6 md:grid md:grid-cols-4 md:gap-4 bg-gray-100">
+    <div class="md:grid md:grid-cols-4 md:gap-4 bg-gray-100 px-10 py-6">
         <div class="col-span-1">
             <form method="get" action="{% url 'item:items' %}">
                 <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find a bike, a chair or a car ...">
@@ -32,12 +32,12 @@
         </div>
 
         <div class="mt-10 col-span-3">
-            <div class="grid grid-cols-3 gap-3">
+            <div class="md:grid md:grid-cols-3 md:gap-3">
                 {% for item in items %}
-                    <div>
+                    <div class="mb-10">
                         <a href="{% url 'item:detail' item.id %}">
-                            <div>
-                                <img src="{{ item.image.url }}" class="w-40 h:35 rounded-t-xl md:w-80 md:h-80">
+                            <div class="w-30 h-30">
+                                <img src="{{ item.image.url }}" class="rounded-t-xl md:w-80 md:h-80">
                             </div>
     
                             <div class="p-6 bg-white rounded-b-xl md:w-80 md:h-30">

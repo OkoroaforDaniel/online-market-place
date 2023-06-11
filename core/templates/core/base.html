@@ -7,9 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <title>{% block title %}{% endblock %} | Puddle</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto:wght@300&display=swap');
+      </style>
       
 </head>
-<body>
+<body class="font-serif">
     <nav class="px-6 py-6 flex justify-between items-center border-b border-grey-200">
         <a href="/" class="text-xl font-semibold">puddle</a>
 
@@ -52,7 +56,7 @@
                 </script>
 
     </nav>
-    <div id="nav-links" class=" mb-10 hidden">
+    <div id="nav-links" class=" mb-10 hidden px-3">
         <!-- <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500 mb-6">New Item</a> -->
         <a href="{% url 'item:new' %}" class="block text-lg font-semibold hover:text-gray-500 mt-6 text-center" id="new-item-link">New Item</a><br><hr>
         <a href="{% url 'item:items' %}" class="block mt-5 text-center mx-center text-lg font-semibold hover:text-gray-500">Browser</a><br><hr>
@@ -68,7 +72,7 @@
 </div>
 
 
-    <div id="body-content" class="px-6 py-6">
+    <div id="body-content" class="py-0">
         {% block content %}
         {% endblock %}
     </div>
