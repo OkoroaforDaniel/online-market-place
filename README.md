@@ -46,9 +46,9 @@ Submit a pull request, clearly describing the changes you have made.
 
 Screenshots:
 
-Screenshot 1
+Screenshot 1:
 <img width="1674" alt="Screen Shot 2023-06-14 at 10 35 56 PM" src="https://github.com/OkoroaforDaniel/online-market-place/assets/79973709/7a0722f9-a126-4ff6-84f6-3fac3de75160">
 
-Screenshot 2
+Screenshot 2:
 <img width="387" alt="Screen Shot 2023-06-14 at 10 36 48 PM" src="https://github.com/OkoroaforDaniel/online-market-place/assets/79973709/983c90c2-b1cb-4a31-a8d2-d180361a8477">
 

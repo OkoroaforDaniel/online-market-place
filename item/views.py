@@ -53,6 +53,14 @@ def new(request):
     })
 
 @login_required
+def pay(request):
+    # Retrieve the item object based on the item_id
+    # Perform any necessary logic for the payment process
+    # Render the payment template or redirect to a payment gateway
+
+    return render(request, 'payment/pay.html')
+
+@login_required
 def edit(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
 
@@ -77,3 +85,4 @@ def delete(request, pk):
     item.delete()
     
     return redirect('dashboard:index')
+

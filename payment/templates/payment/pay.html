@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+
+<div class="md:w-1/2  bg-gray-100 p-6 md:rounded-xl md:my-10 md:mx-auto">
+    <h1 class="mb-6 text-3xl">Payment</h1>
+
+    <form id="paymentForm">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="email" class="inline-block font-serif">Email Address</label><br>
+        <input type="email" id="email-address" class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 h-10 w-full my-3 pl-5 py-5" placeholder="Your Email Address" required />
+        </div>
+        <div class="form-group">
+        <label for="amount">Amount</label><br>
+        <input type="tel" id="amount" class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 h-10 w-full my-3 pl-5 py-5" placeholder="Enter Amount" required />
+        </div>
+        <div class="form-group">
+        <label for="first-name">First Name</label><br>
+        <input type="text" id="first-name" class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 h-10 w-full my-3 pl-5 py-5" placeholder="Your First Name" />
+        </div>
+        <div class="form-group">
+        <label for="last-name">Last Name</label><br>
+        <input type="text" id="last-name" class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 h-10 w-full my-3 pl-5 py-5" placeholder="Your Last Name" />
+        </div>
+        <div class="form-submit">
+        <button type="submit" onclick="payWithPaystack()" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"> Pay </button>
+        </div>
+  </form>
+</div>
+  
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script> 
+
+{% endblock %}
