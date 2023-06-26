@@ -4,6 +4,12 @@ from item.models import Category, Item
 
 from .forms import SignupForm
 
+# from django.contrib.auth import logout as logouts
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.urls import reverse
+
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:12]
     categories = Category.objects.all()
@@ -30,3 +36,8 @@ def signup(request):
     return render(request, 'core/signup.html', {
         'form': form
     })
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("You were logged out."))
+    return redirect(reverse('core:index'))

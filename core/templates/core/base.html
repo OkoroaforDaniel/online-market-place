@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <script defer async src=""></script>
     <title>{% block title %}{% endblock %} | Puddle</title>
     <!-- {% load static %} -->
     
@@ -22,6 +22,7 @@
             {% if request.user.is_authenticated %}
                 <a href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700 hidden lg:inline-block">Inbox</a>
                 <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700 hidden lg:inline-block">Dashboard</a>
+                <a href="{% url 'core:logout' %}" class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-950 hidden lg:inline-block">Logout</a>
             {% else %}
                 <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700 hidden lg:inline-block">Sign Up</a>
                 <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700 hidden lg:inline-block">Log in</a>
@@ -44,8 +45,9 @@
         <a href="{% url 'item:items' %}" class="block mt-5 text-center mx-center text-lg font-semibold hover:text-gray-500">Browser</a><br><hr>
 
         {% if request.user.is_authenticated %}
-            <a href="{% url 'conversation:inbox' %}" class="block mt-10 text-center px-6 py-3 mb-10 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700" id="inbox-link">Inbox</a><br>
+            <a href="{% url 'conversation:inbox' %}" class="block mt-10 text-center px-6 py-3 mb-5 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700" id="inbox-link">Inbox</a><br>
             <a href="{% url 'dashboard:index' %}" class="block text-center px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a><br>
+            <a href="{% url 'core:logout' %}" class="block mt-5 text-center px-6 py-3 mb-10 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-950" id="inbox-link">Logout</a><br>
         {% else %}
             <a href="{% url 'core:signup' %}" class="block text-center px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700 mt-10">Sign Up</a><br>
             <a href="{% url 'core:login' %}" class="block text-center px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a><br>
@@ -58,30 +60,70 @@
         {% block content %}
         {% endblock %}
     </div>
-   <footer class="py-6 px-6 flex justify-between bg-gray-500">
-    <div class="w-2/3 pr-10">
-        <div class="mt-4">
+   <footer class="py-6 px-6 bg-gray-500">
+    <div class="flex justify-between">
+    <div class="grid grid-cols-3 gap-3" >
+        <div class="mx-10">
+            <h3 class="mb-5 font-semibold text-gray-400">SHOP</h3>
+
+            <ul class="space-y-2">
+                <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Gift Card</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">store locator</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Refer a friend</a></li>
+            </ul>
+        </div>
+
+        <div class="mx-10">
+            <h3 class="mb-5 font-semibold text-gray-400">HELP</h3>
+
+            <ul class="space-y-2">
+                <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact Us</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">FAQ</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Accessiblity</a></li>
+            </ul>
+        </div>
+
+        <div class="mx-10">
+            <h3 class="mb-5 font-semibold text-gray-400">ABOUT</h3>
+
+            <ul class="space-y-2">
+                <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Our Story</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Wholesale</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Press</a></li>
+                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Careers</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class=" pr-10">
+        <p>Sign Up to get 10% of your first order</p>
+        <form action=".">
+            {% csrf_token %}
+            <div class="flex justify-between">
+            <input type="email" id="email-address" class="border border-gray-300 rounded-3xl focus:outline-none focus:border-blue-500 h-12 w-full my-3 pl-5 py-5" placeholder="Your Email Address" required />
+            <button class="px-6 ml-5 mt-3 h-12 text-lg font-semibold bg-teal-500 text-white rounded-3xl hover:bg-teal-700">Subscribe</button>
+            </div>
+        </form>
+        <div class=" w-40 flex justify-between mt-4">
         <a href="https://www.linkedin.com/in/daniel-okoroafor-61b321208" target="_blank">
             <svg id="linkedin-icon" class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="linkedin-icon-path" d="M20 4H4C2.897 4 2 4.897 2 6V20C2 21.103 2.897 22 4 22H20C21.103 22 22 21.103 22 20V6C22 4.897 21.103 4 20 4ZM9 18H6V9H9V18ZM7.5 7.5C6.675 7.5 6 6.825 6 6C6 5.175 6.675 4.5 7.5 4.5C8.325 4.5 9 5.175 9 6C9 6.825 8.325 7.5 7.5 7.5ZM18 18H15V13.5C15 12.12 13.88 11 12.5 11C11.12 11 10 12.12 10 13.5V18H7V9H10V10.56C10.395 9.74 11.38 9 12.5 9C14.985 9 17 11.015 17 13.5V18Z" fill="blue" />
-              </svg>
-          </a>
+            </svg>
+        </a>
         
-          <a href="https://github.com/OkoroaforDaniel" target="_blank">
+        <a href="https://github.com/OkoroaforDaniel" target="_blank">
             <svg id="github-icon" class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="github-icon-path" d="M12 2C6.477 2 2 6.477 2 12C2 15.866 4.242 19.416 8.06 20.732C8.66 20.875 8.913 20.489 8.913 20.162C8.913 19.902 8.901 19.184 8.895 18.104C5.957 18.583 4.96 17.191 4.96 17.191C4.376 16.125 3.582 15.811 3.582 15.811C2.495 15.149 3.645 15.169 3.645 15.169C4.796 15.235 5.318 16.321 5.318 16.321C6.246 18.001 7.775 17.498 8.974 17.202C9.065 16.854 9.278 16.587 9.531 16.413C7.079 16.121 4.336 14.875 4.336 10.524C4.336 9.327 4.773 8.364 5.464 7.633C5.373 7.413 5.079 6.2 5.629 4.708C5.629 4.708 6.743 4.409 8.895 5.91C9.873 5.629 10.936 5.489 12 5.484C13.064 5.489 14.127 5.629 15.105 5.91C17.257 4.409 18.371 4.708 18.371 4.708C18.921 6.2 18.628 7.413 18.537 7.633C19.228 8.364 19.664 9.327 19.664 10.524C19.664 14.886 16.914 16.126 14.456 16.413C14.862 16.681 15.21 17.133 15.21 18.199C15.21 19.63 15.195 20.772 15.195 20.982C15.195 21.32 15.44 21.781 15.91 21.642C19.759 19.423 22 15.872 22 12C22 6.477 17.523 2 12 2Z" fill="currentColor"/>
-              </svg>
-          </a>
-          </div>
+            </svg>
+        </a>
+        </div>
     </div>
-    <div class="w-1/3">
-        <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+    </div>
 
-        <ul class="space-y-2">
-            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-            <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+    <div>
+        <ul class="flex justify-between w-90">
+            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of Service</a></li>
             <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">privacy policy</a></li>
-            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
+            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Don't sell my Information</a></li>
         </ul>
     </div>
    
